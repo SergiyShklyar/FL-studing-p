@@ -10,6 +10,10 @@
 # If the operation code has been input, then the operands should follow.
 # Otherwise, if code 0 was input for termination, then the operands are not read.
 
+# Change 2: Exception handling for when the user gives invalid input for the menu.
+# The input shoud be an integer number from 0 to 4.  If not, an error message is printed,
+# and the main menu is displayed again.
+
 # Python Program to Make a Simple Calculator
 
 def multiplication(num1, num2):
@@ -30,13 +34,22 @@ def divide_(num1, num2):
 
 while True:
     print("Enter 0 to quit; or select the operation 1-Division, 2-Multiplication, 3-Addition, 4-Subtraction")
-    operation = int(input("Choose operation 0/1/2/3/4: "))
+    try:
+        operation = int(input("Choose operation 0/1/2/3/4: "))
+    except ValueError:
+        operation = -1
     if operation == 0:
         break
-
-    value1 = int(input("Enter 1st number: "))
-    value2 = int(input("Enter 2nd number: "))
+    if not (operation >= 0 and operation < 5):
+        print("Not a valid operation code. Enter correct operation, please.")
+        operation = -1
+        
+    if operation > 0:
+        value1 = int(input("Enter 1st number: "))
+        value2 = int(input("Enter 2nd number: "))
   
+    # Perhaps, the following block shoud be also indented. This would make the code more efficient.
+    # Not done: reserved for the upcoming changes.
     if operation == 1:
         print(value1, "/", value2, "=", divide_(value1, value2))
     elif operation == 2:
