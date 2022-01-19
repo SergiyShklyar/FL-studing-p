@@ -7,7 +7,7 @@
 # Notice: this also changes the order of the input:
 # Previously, the operands were input fist, and the operation code was input after that.
 # Now, the operation coder (or code 0 for termination) was input first.
-# If the operation code has been input, then it should follow by the operands.
+# If the operation code has been input, then the operands should follow.
 # Otherwise, if code 0 was input for termination, then the operands are not read.
 
 # Python Program to Make a Simple Calculator
