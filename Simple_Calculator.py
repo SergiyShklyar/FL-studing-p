@@ -46,6 +46,7 @@ while True:
     elif operation == 4:
         print(value1, "-", value2, "=", subtraction(value1, value2))
 
-else:
-    # This line is unreachable, due to the code analyser
-    print("Enter correct operation")
+# The following "else" is unreachable. Commenting it out.
+# else:
+#     # This line is unreachable, due to the code analyser
+#     print("Enter correct operation")
