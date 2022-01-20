@@ -67,6 +67,7 @@ while True:
         operation = -1
         
     if operation > 0:
+        # from testing branch
         try:
             value1 = input_number("1st number")
         except ValueError:
