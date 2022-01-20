@@ -71,33 +71,32 @@ while True:
             value1 = input_number("1st number")
         except ValueError:
             print("Sorry, that is not a number again. Returning to main menu.")
+            # operation is not used anymore. Next line can be deleted.
             operation = -1
 
-    if operation > 0:
-        try:
-            value2 = input_number("2nd number")
-        except ValueError:
-            print("Sorry, that is not a number again. Returning to main menu.")
-            operation = -1
-
-    # Perhaps, the following block should be also indented. This would make the code more efficient.
-    # Not done: reserved for the upcoming changes.
-    # As it is now, the code analyser complains that value1 and value2 can be undefined
-    if operation == 1:
-        try:
-            result = divide_(value1, value2)
-        except ZeroDivisionError:
-            print("Division by zero")
         else:
-            print(value1, "/", value2, "=", result)
-    elif operation == 2:
-        print(value1, "*", value2, "=", multiplication(value1, value2))
-    elif operation == 3:
-        print(value1, "+", value2, "=", addition(value1, value2))
-    elif operation == 4:
-        print(value1, "-", value2, "=", subtraction(value1, value2))
+            # Now operation>0 and value1 was input successfully
+            try:
+                value2 = input_number("2nd number")
+            except ValueError:
+                print("Sorry, that is not a number again. Returning to main menu.")
+                # operation is not used anymore. Next line can be deleted.
+                operation = -1
 
-# The following "else" is unreachable. Commenting it out.
-# else:
-#     # This line is unreachable, due to the code analyser
-#     print("Enter correct operation")
+            else:
+                # Now operation>0 and
+                # the variables value1 and value2 have been input successfully
+                # Drawback: chained else
+                if operation == 1:
+                    try:
+                        result = divide_(value1, value2)
+                    except ZeroDivisionError:
+                        print("Division by zero")
+                    else:
+                        print(value1, "/", value2, "=", result)
+                elif operation == 2:
+                    print(value1, "*", value2, "=", multiplication(value1, value2))
+                elif operation == 3:
+                    print(value1, "+", value2, "=", addition(value1, value2))
+                elif operation == 4:
+                    print(value1, "-", value2, "=", subtraction(value1, value2))
