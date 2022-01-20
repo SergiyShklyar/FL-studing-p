@@ -21,6 +21,10 @@
 # main menu. Change: now numbers with decimal point are accepted. Previously,
 # the numbers must have been integer.
 
+# Change 4: Exception handling for when the user tries to divide by zero.
+# In case of division by zero, the error message is printed.
+# Otherwise, the result is printed.
+
 # Python Program to Make a Simple Calculator
 
 def multiplication(num1, num2):
@@ -80,7 +84,12 @@ while True:
     # Not done: reserved for the upcoming changes.
     # As it is now, the code analyser complains that value1 and value2 can be undefined
     if operation == 1:
-        print(value1, "/", value2, "=", divide_(value1, value2))
+        try:
+            result = divide_(value1, value2)
+        except ZeroDivisionError:
+            print("Division by zero")
+        else:
+            print(value1, "/", value2, "=", result)
     elif operation == 2:
         print(value1, "*", value2, "=", multiplication(value1, value2))
     elif operation == 3:
