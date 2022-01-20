@@ -11,7 +11,7 @@
 # Otherwise, if code 0 was input for termination, then the operands are not read.
 
 # Change 2: Exception handling for when the user gives invalid input for the menu.
-# The input shoud be an integer number from 0 to 4.  If not, an error message is printed,
+# The input should be an integer number from 0 to 4.  If not, an error message is printed,
 # and the main menu is displayed again.
 
 # Python Program to Make a Simple Calculator
@@ -40,7 +40,7 @@ while True:
         operation = -1
     if operation == 0:
         break
-    if not (operation >= 0 and operation < 5):
+    if not (0 <= operation < 5):
         print("Not a valid operation code. Enter correct operation, please.")
         operation = -1
         
@@ -48,8 +48,9 @@ while True:
         value1 = int(input("Enter 1st number: "))
         value2 = int(input("Enter 2nd number: "))
   
-    # Perhaps, the following block shoud be also indented. This would make the code more efficient.
+    # Perhaps, the following block should be also indented. This would make the code more efficient.
     # Not done: reserved for the upcoming changes.
+    # As it is now, the code analyser complains that value1 and value2 can be undefined
     if operation == 1:
         print(value1, "/", value2, "=", divide_(value1, value2))
     elif operation == 2:
