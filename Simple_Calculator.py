@@ -48,19 +48,12 @@ while True:
         value1 = int(input("Enter 1st number: "))
         value2 = int(input("Enter 2nd number: "))
   
-    # Perhaps, the following block should be also indented. This would make the code more efficient.
-    # Not done: reserved for the upcoming changes.
-    # As it is now, the code analyser complains that value1 and value2 can be undefined
-    if operation == 1:
-        print(value1, "/", value2, "=", divide_(value1, value2))
-    elif operation == 2:
-        print(value1, "*", value2, "=", multiplication(value1, value2))
-    elif operation == 3:
-        print(value1, "+", value2, "=", addition(value1, value2))
-    elif operation == 4:
-        print(value1, "-", value2, "=", subtraction(value1, value2))
-
-# The following "else" is unreachable. Commenting it out.
-# else:
-#     # This line is unreachable, due to the code analyser
-#     print("Enter correct operation")
+    # These were put into the body of IF-statement due to the complaints of the code analyser.
+        if operation == 1:
+            print(value1, "/", value2, "=", divide_(value1, value2))
+        elif operation == 2:
+            print(value1, "*", value2, "=", multiplication(value1, value2))
+        elif operation == 3:
+            print(value1, "+", value2, "=", addition(value1, value2))
+        elif operation == 4:
+            print(value1, "-", value2, "=", subtraction(value1, value2))
