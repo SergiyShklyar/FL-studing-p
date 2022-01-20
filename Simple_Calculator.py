@@ -14,6 +14,17 @@
 # The input should be an integer number from 0 to 4.  If not, an error message is printed,
 # and the main menu is displayed again.
 
+# Change 3: Exception handling when the user inputs non-numeric values
+# to calculate.
+# If a non-numeric number is input, the user is asked to input the number
+# again. If a non-numeric number is input again, the flow is returned to the
+# main menu. Change: now numbers with decimal point are accepted. Previously,
+# the numbers must have been integer.
+
+# Change 4: Exception handling for when the user tries to divide by zero.
+# In case of division by zero, the error message is printed.
+# Otherwise, the result is printed.
+
 # Python Program to Make a Simple Calculator
 
 def multiplication(num1, num2):
@@ -32,6 +43,17 @@ def divide_(num1, num2):
     return num1 / num2
 
 
+def input_number(what_number):
+    string = input(f"Enter {what_number}: ")
+    try:
+        number = float(string)
+    except ValueError:
+        print("That is not a number. Please input a numeric value.")
+        string = input(f"Input {what_number} again: ")
+        number = float(string)
+    return number
+
+
 while True:
     print("Enter 0 to quit; or select the operation 1-Division, 2-Multiplication, 3-Addition, 4-Subtraction")
     try:
@@ -45,15 +67,37 @@ while True:
         operation = -1
         
     if operation > 0:
-        value1 = int(input("Enter 1st number: "))
-        value2 = int(input("Enter 2nd number: "))
-  
-    # These were put into the body of IF-statement due to the complaints of the code analyser.
-        if operation == 1:
-            print(value1, "/", value2, "=", divide_(value1, value2))
-        elif operation == 2:
-            print(value1, "*", value2, "=", multiplication(value1, value2))
-        elif operation == 3:
-            print(value1, "+", value2, "=", addition(value1, value2))
-        elif operation == 4:
-            print(value1, "-", value2, "=", subtraction(value1, value2))
+        # from testing branch
+        try:
+            value1 = input_number("1st number")
+        except ValueError:
+            print("Sorry, that is not a number again. Returning to main menu.")
+            # operation is not used anymore. Next line can be deleted.
+            operation = -1
+
+        else:
+            # Now operation>0 and value1 was input successfully
+            try:
+                value2 = input_number("2nd number")
+            except ValueError:
+                print("Sorry, that is not a number again. Returning to main menu.")
+                # operation is not used anymore. Next line can be deleted.
+                operation = -1
+
+            else:
+                # Now operation>0 and
+                # the variables value1 and value2 have been input successfully
+                # Drawback: chained else
+                if operation == 1:
+                    try:
+                        result = divide_(value1, value2)
+                    except ZeroDivisionError:
+                        print("Division by zero")
+                    else:
+                        print(value1, "/", value2, "=", result)
+                elif operation == 2:
+                    print(value1, "*", value2, "=", multiplication(value1, value2))
+                elif operation == 3:
+                    print(value1, "+", value2, "=", addition(value1, value2))
+                elif operation == 4:
+                    print(value1, "-", value2, "=", subtraction(value1, value2))
