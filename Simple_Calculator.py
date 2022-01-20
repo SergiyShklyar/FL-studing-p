@@ -14,6 +14,13 @@
 # The input should be an integer number from 0 to 4.  If not, an error message is printed,
 # and the main menu is displayed again.
 
+# Change 3: Exception handling when the user inputs non-numeric values
+# to calculate.
+# If a non-numeric number is input, the user is asked to input the number
+# again. If a non-numeric number is input again, the flow is returned to the
+# main menu. Change: now numbers with decimal point are accepted. Previously,
+# the numbers must have been integer.
+
 # Python Program to Make a Simple Calculator
 
 def multiplication(num1, num2):
@@ -32,6 +39,17 @@ def divide_(num1, num2):
     return num1 / num2
 
 
+def input_number(what_number):
+    string = input(f"Enter {what_number}: ")
+    try:
+        number = float(string)
+    except ValueError:
+        print("That is not a number. Please input a numeric value.")
+        string = input(f"Input {what_number} again: ")
+        number = float(string)
+    return number
+
+
 while True:
     print("Enter 0 to quit; or select the operation 1-Division, 2-Multiplication, 3-Addition, 4-Subtraction")
     try:
@@ -45,9 +63,19 @@ while True:
         operation = -1
         
     if operation > 0:
-        value1 = int(input("Enter 1st number: "))
-        value2 = int(input("Enter 2nd number: "))
-  
+        try:
+            value1 = input_number("1st number")
+        except ValueError:
+            print("Sorry, that is not a number again. Returning to main menu.")
+            operation = -1
+
+    if operation > 0:
+        try:
+            value2 = input_number("2nd number")
+        except ValueError:
+            print("Sorry, that is not a number again. Returning to main menu.")
+            operation = -1
+
     # Perhaps, the following block should be also indented. This would make the code more efficient.
     # Not done: reserved for the upcoming changes.
     # As it is now, the code analyser complains that value1 and value2 can be undefined
