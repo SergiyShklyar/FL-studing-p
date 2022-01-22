@@ -1,2 +1,2 @@
 # FL-studing-p
-Projects for studying FL cources
+Projects for studying FL courses
