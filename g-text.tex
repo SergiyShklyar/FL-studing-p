@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{amsmath}
+\DeclareMathOperator{\ME}{\mathsf{E}}
+\DeclareMathOperator{\var}{\mathsf{var}}
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\begin{document}
+\section{Motivation}
+The fractional Brownian motion ---
+a self-similar zero-mean Gaussian process with stationary increments
+and power incremental variances $\ME (B^H_t - B^H_s)^2 = (t-s)^{2H}$
+admits a Molchan representation on $[0,\infty)$:
+\begin{gather*}
+B^H_t = \int_0^t K(t,s) \, dW_s, \\
+K(t,s) = c_H s^{0.5-H} \biggl( t^{H-0.5} (t{-}s)^{H-0.5} -
+\left(H{-}{\textstyle\frac12}\right) \int_s^t u^{H-1.5} (u{-}s)^{H-0.5}\, du
+\biggr)
+\end{gather*}
+if $0<H<1$,
+\begin{gather*}
+K(t,s) = 
+\left(H{-}{\textstyle\frac12}\right) c_H
+s^{0.5-H} \int_s^t u^{H-0.5} (u-s)^{H-1.5} \, du \quad
+\mbox{if $\frac12{<}H{<}1$},
+\\
+c_H = \left( \frac
+{2 H \, \Gamma(1.5-H)}
+{\Gamma(H+0.5)\, \Gamma(2-2H)}
+\right)^{1/2} .
+\end{gather*}
+
+\section{Generalization 1: Three functions}
+Consider the kernel of the form
+\[
+K(t,s) = a(s) \int_s^t b(u) c(u-s) \, du
+\]
+Then the Volterra process is
+\begin{equation}\label{eq:3Xabc}
+X_t = \int_0^t a(s) \int_s^t b(u) c(u-s)\, du \, dW_s .
+\end{equation}
+\begin{proposition}\label{prop:1}
+Let $a\in L^p[0,T]$, \, $b\in L^q[0,T]$
+and $c\in L^r[0,T]$,
+\[
+p\ge 2,\quad
+q\ge 1,\quad
+r\ge 1,\quad
+\frac{1}{p}+\frac{1}{q}+\frac{1}{r}\le \frac32.
+\]
+Then the process $X$ is well-defined on $[0,T]$ by \eqref{eq:3Xabc}.
+If, in addition  $\frac{1}{p}+\frac{1}{r} < \frac32$,
+then the process $X$ is  path-continuous (up to modification).
+If $q>1$ and $\frac{1}{p}+\frac{1}{q}+\frac{1}{r} < \frac32$,
+then the process $X$ is H\"older-continuous up
+to order $\frac32 - 1/q - \max(\frac12, \, 1/p+1/r)$.
+\end{proposition}
+Fractional Brownian motion with Hurst index $H>0.5$
+is a particular case of process \eqref{eq:3Xabc}.
+However, Proposition~\ref{prop:1}
+underestimates the order in H\"older condition for the fBm.
+
+\section{Generalization 2: Three power functions}
+Consider the case where $a$, $b$ and $c$ are power functions.
+\[
+X_t = \int_0^t s^\beta \int_s^t u^\beta (u-s)^\gamma \,  du \, dW_t.
+\]
+The process $X_t$ is well-defined if
+\[
+\alpha>-\frac12, \quad \gamma>-1, \quad
+\mbox{and} \quad
+\alpha+\beta+\gamma>-\frac32.
+\]
+
+The process $X$ is self-similar with exponent
+\[
+H = \alpha+\beta+\gamma+\frac32 .
+\]
+
+The process $X$ satisfies the H\"older condition
+up to order $\min(\gamma+\frac32, \, 1)$
+on the interval $[t_0, T]$,
+and it satisfies 
+the H\"older condition
+up to order $\min(H, \gamma+\frac32, \, 1)$
+on the interval $[0, T]$.
+Here $0<t_0<T$.
+
+\subsection{Incremental variance and generalized quasi-helix condition}
+\begin{proposition}\label{prop:localvar}
+Let $t_0 > 0$.
+The asymptotics of the incremental variance as $t\to t_0$
+is as follows:
+\begin{equation*}
+% \refstepcounter{equation}
+% \label{eq:asymp-localvar-1}
+\begin{array}{l@{\qquad}l}
+\displaystyle \var(X_{t}-X_{t_0}) \sim \frac
+{t_0^{2\alpha+2\beta} \, |t - t_0|^{2\gamma+3} \,
+\mathrm{B}(\gamma{+}1,\, {-}2\gamma{-}1)} {(\gamma + 1)\,(2\gamma
++ 3)}
+& \mbox{if $\gamma<-\frac12$,}
+\quad (\theequation) \\
+\displaystyle \var(X_{t}-X_{t_0}) \sim t_0^{2\alpha+2\beta} \,
+(t - t_0)^2 \, \ln\!\left( \frac{t_0}{|t - t_0|} \right)
+& \mbox{if $\gamma=-\frac12$,} \\
+\displaystyle \var(X_{t}-X_{t_0}) \sim
+t_0^{2\alpha+2\beta+2\gamma+1} \, (t - t_0)^2 \,
+\mathrm{B}(2\alpha{+}1,\, 2\gamma{+}1) & \mbox{if
+$\gamma>-\frac12$.}
+\end{array}
+\end{equation*}
+\end{proposition}
+
+
+\begin{defn}
+Process $\{X_t, \; t\mathbin{\in}[t_0,T]\}$
+is a generalized  quasi-helix  with
+exponents $\lambda_i>0, i=1,2$   if there exist two constants $C_i>0, i=1,2$ such that for any
+$t_0  \le  t_1 < t_2  \le  T$
+\[
+C_1 (t_2-t_1)^{2\lambda_1} \le \var(X_{t_2} - X_{t_1}) \le
+C_2 (t_2-t_1)^{2\lambda_2}.
+\]
+\end{defn}
+
+\vspace{3pt}{\def\arraystretch{1.3}
+The exponents in the generalized quasi-helix condition:\\
+\begin{tabular}{|p{0.35\linewidth}|p{0.27\linewidth}|p{0.2\linewidth}|}
+\hline
+& \multicolumn{2}{p{0.50\linewidth}|}{the exponents in the generalized  quasi-helix condition}\\
+& on the interval $[0,T]$ are
+& on any interval $[t_0,T]$ are\\
+ \hline
+If $\gamma\mathbin{<}-\frac12$ and $\alpha+\beta\le 0$,
+& $\gamma{+}\frac32$ and $\alpha{+}\beta{+}\gamma{+}\frac32$
+& $\gamma{+}\frac32$ \\ \hline
+If $\gamma\mathbin{<}-\frac12$ and $\alpha+\beta\ge 0$,
+& $\alpha{+}\beta{+}\gamma{+}\frac32$ and $\gamma{+}\frac32$
+& $\gamma{+}\frac32$ \\ \hline
+If $\gamma\mathbin{=}-\frac12$ and $\alpha+\beta< 0$,
+& $1$ and $\alpha+\beta+1$
+& $1$ and $1{-}\epsilon$ \\ \hline
+If $\gamma\mathbin{=}-\frac12$ and $\alpha+\beta \ge 0$,
+& $\alpha{+}\beta{+}1$ and $1{-}\epsilon$
+& $1$ and $1{-}\epsilon$ \\  \hline
+If $\gamma\mathbin{>}-\frac12$ and $\alpha{+}\beta{+}\gamma \mathbin{\le} -\frac12$,
+& $1$ and $\alpha{+}\beta{+}\gamma{+}\frac32$
+& $1$\\  \hline
+If $\gamma\mathbin{>}-\frac12$ and $\alpha{+}\beta{+}\gamma \mathbin{\ge} -\frac12$,
+& $\alpha{+}\beta{+}\gamma{+}\frac32$ and $1$
+& $1$\\
+\hline
+\end{tabular}}
+
+\end{document}
+
