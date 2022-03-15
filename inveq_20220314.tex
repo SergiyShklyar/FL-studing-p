@@ -31,7 +31,7 @@
 \end{abstract}
 
 \section{Introduction and preliminaries}
-Let $\{W_s,\;s\in[0,T]\}$ be a Wiener process.
+Let $T>0$ and let $\{W_s,\;s\in[0,T]\}$ be a Wiener process.
 We consider the Gaussian process with Volterra kernel (Gaussian Volterra process)
 of the form
 \begin{equation}\label{eq:VolterraPr}
@@ -100,7 +100,8 @@ and so the obvious choice for operator $K^*$ is
 \[
 	(K^*\phi) (s) = \int_s^T \phi(t) \, \dKdt(t,s)\, dt.
 \]
-Therefore
+If it will be necessary to distinguish, operator $K^*$ will be marked as $K_{(\cdot,\cdot,\cdot)}^*$, by the values of the powers in the kernel $K$.
+Now, 
 \[
 	\int_0^T \phi(t) \, dX_t
 	= \int_0^T \int_s^T \phi(t) \, \dKdt(t,s) \, dt \, dW_s .
@@ -137,10 +138,10 @@ Regardless whether or not $pk>-1$,
 the space
 $\mathcal{E}_{p,k}$ contains indicators of intervals
 $\mathbf{1}_{[t_0,t]}$, $0\mathbin{<}t_0\mathbin{<}t\mathbin{\le}T$,
-and the indicators of intervals span
+and these indicators of intervals span
 a dense subset in $\mathcal{E}_{p,k}$.
 
-We need the next simple statement.
+Now we need the next simple statement.
 
 \begin{lemma}\label{lem:X123e3}
 Let $a_i\in [0,1)$, $i=1,\ldots,3$,
@@ -171,21 +172,20 @@ Let \eqref{eq:XpowerVcond} hold true, and let
 \begin{equation} \label{forseven} p>\max\Bigl( \frac{2}{2\gamma+3},\:\allowbreak
      \frac{2}{3+2\alpha+2\beta+2\gamma}\Bigr).\end{equation}
 Then the operator
-\[
-	(K^* \phi)(s) = s^\alpha \int_s^T \phi(t)\, t^\beta \, (t-s)^\gamma\, dt
-\]
+\begin{equation}\label{operator}
+(K^* \phi)(s) = s^\alpha \int_s^T \phi(t)\, t^\beta \, (t-s)^\gamma\, dt
+\end{equation}
+	
+ 
 is a bounded linear operator $L^p[0,T]\to L^2[0,T]$.
 \end{prop}
 
-\begin{remark}
-	\label{remark:propPW-L-cont}
-	For $p=\infty$  Proposition~\ref{prop:PW-L-cont} follows
-	from the proof of Theorem~1 \cite{Part 1}.
-%	For our purposes, that is enough to prove Proposition~\ref{prop:PW-L-cont}
-%	for some $1\mathbin{\le}p\mathbin{<}\infty$.
-\end{remark}
-
-\begin{proof} Let's calculate the norms of functions on the interval
+ 
+	 
+	
+\begin{proof}For $p=\infty$  Proposition~\ref{prop:PW-L-cont} follows
+	from the proof of Theorem~1 \cite{Part 1}. So, let $p$ is finite, and 
+ let's calculate the norms of functions on the interval
 	$[0,T]$,  that is, $\|f\|_p$ is a short-hand notation for
 	$\|f\|_{L^p[0,T]}$.
 	With this notation,
@@ -404,9 +404,9 @@ Also,
 \le
 \|\psi\|_p T^{\epsilon_2} .
 \]
-As $\beta\le 0$
+Since  $\beta\le 0$
 and $s\le t$ on the integration domain
-of \eqref{eq:todoPW-L-cont},
+of \eqref{eq:todoPW-L-cont}, we have that
 $t^\beta \le s^\beta$.
 
 Then by Young's inequality
@@ -505,7 +505,7 @@ for non-conjugate exponents,
 \\ &\le
 \|\psi\|_2 \|s^{\alpha+\beta}\|_{1/((\alpha+\beta)^- + \epsilon_1)} \,
 \|\phi\|_p T^{\epsilon_2} \,
-\|u^\gamma\|_{1/(-\gamma+\epsilon_3)},
+\|u^\gamma\|_{1/(-\gamma+\epsilon_3)}.
 \end{align*}
 
 Apply Lemma~\ref{lem:X123e3} again,
@@ -680,15 +680,7 @@ holds true for
 $c(p; \alpha, \beta,\gamma) = c(p; 0, \alpha{+}\beta, \gamma)$.
 \end{proof}
 
-The following corollary follows
-from Proposition~\ref{prop:PW-L-cont}
-applied for operator $K^*$ with parameters
-$(\alpha, \beta{-}k, \gamma)$
-and function $\phi(t) t^k$.
-The norm of the operator $K^* : \mathcal{E}_{p,k} \to L^2[0,T]$
-will be not more than $c(p; \alpha, \beta{-}k, \gamma)$,
-where $c(p; \alpha, \beta, \gamma)$ is defined
-in the proof of Proposition~\ref{prop:PW-L-cont}.
+ 
 
 \begin{corollary}
 	\label{corollary:ELbound}
@@ -701,21 +693,19 @@ in the proof of Proposition~\ref{prop:PW-L-cont}.
 		\frac{1}{p} < \frac32+\gamma, \qquad
 		\frac{1}{p} + k < \frac32 + \alpha+\beta+\gamma .
 	\end{gather*}
-	Then the operator $K^*$ defined in Proposition~\ref{prop:PW-L-cont}
+	Then the operator $K^*$ defined in \eqref{operator}
 	is a bounded linear operator $\mathcal{E}_{p,k}\to  L^2[0,T]$.
 \end{corollary}
 \begin{proof}
-Denote
+Recall that
 the operator $K^*$ for specific $\alpha$, $\beta$ and
-$\gamma$ by $K^*_{(\alpha,\beta,\gamma)}$.
+$\gamma$ is denoted by  $K^*_{(\alpha,\beta,\gamma)}$.
 From the definition, it follows that
 \begin{gather*}
 (K^*_{(\alpha,\beta,\gamma)}
 (\phi(t) t^k))  (s) =
 s^\alpha \int_s^T \! \phi(t) \, t^{k+\beta} \, (t-s)^\gamma\, dt
-=(K^*_{(\alpha,\beta+k,\gamma)} \phi) (s), \\
-K^*_{(\alpha,\beta,\gamma)}
-(\phi(t) t^k) = K^*_{(\alpha,\beta+k,\gamma)} \phi .
+=(K^*_{(\alpha,\beta+k,\gamma)} \phi) (s).
 \end{gather*}
 Then
 \begin{align}
@@ -733,7 +723,7 @@ $K^*_{(\alpha,\beta-k,\gamma)} (\phi(t) t^k)$ is well-defined.
 Under conditions of Corollary~\ref{corollary:ELbound},
 the operator
 $K^*_{(\alpha,\beta-k,\gamma)} : L^p[0,T] \to L^2[0,T]$
-is bounded and $c(p; \alpha, \beta{-}k, \gamma) < \infty$.
+is bounded and $c(p; \alpha, \beta{-}k, \gamma)$ can be chosen as a finite number.
 Thus,
 the boundedness of the operator
 $K^*_{(\alpha,\beta,\gamma)} : \mathcal{E}_{p,k} \to L^2[0,T]$
@@ -782,11 +772,11 @@ where $L^2(\Omega,\mathcal{F},\mathcal{P})$
 is a space of square-integrable random variables.
 Furthermore, if $p k\mathbin{>} {-}1$,
 then \eqref{eq:def-PLI-3p}
-gives $\int_0^T \indicatorfun_{[a,b]} X_t = X_b - X_a$,
+gives $\int_0^T \indicatorfun_{[a,b]} dX_t = X_b - X_a$,
 which is very natural.
 If $1\mathbin{\le}p\mathbin{<}\infty$,
 then the indicators of intervals span a dense subset
-in $\mathbin{E}_{p,k}$.
+in $\mathcal{E}_{p,k}$.
 Thus, in Definition~\ref{def-PLI-3p},
 we construct a linear and continuous extension
 of integrals of indicators of intervals.
@@ -804,6 +794,8 @@ It is well-defined if
 \]
 and
 is self-similar with exponent $\alpha+\beta+\gamma+\frac12$.
+Let  $\lceil x \rceil$ stand for 
+  the least integer that is greater   or equal to $x$.
 
 \begin{prop}
 If $\alpha>-\frac{1}{2}$, $\beta\in\mathbb{R}$
@@ -812,6 +804,8 @@ then the process $\dotX$ has a modification
 which is H\"older-continuous
 up to order $\gamma+\frac12$ on any interval $[t_0, T]$,
 $0<t_0<T$.
+
+
 If $\alpha>-\frac{1}{2}$, $\beta\in\mathbb{R}$
 and $\gamma>\frac12$, then the process
 $\dotX$ has a modification
@@ -819,14 +813,13 @@ which is continuously differentiable on $(0,+\infty)$,
 and, as the result, is Lipschitz continuous
 on any interval $[t_0,T]$.
 Moreover, the process $\dotX$ is $\lceil \gamma-\frac12 \rceil$
-times continuously differentiable, where $\lceil x \rceil$
-is the least integer that is greater than or equal to $x$.
+times continuously differentiable. 
 \end{prop}
 
 \begin{proof}
 The process $M_t = \int_0^t s^\gamma \, dW_s$
 has a modification that satisfies H\"older
-condition up to order $\frac12$ on any interval $[t_0,T]$.
+condition up to order $\frac12$ on any interval $[t_0, T]$, $t_0\mathbin{\in}(0, T)$.
 
 First, consider the case $\gamma\in\bigl(-\frac12,\frac12\bigr]$.
 Let $\lambda \in \bigl(0 \mathbin{\vee} \gamma,\,\allowbreak \gamma+\frac12
@@ -875,40 +868,38 @@ $(0,\, {+}\infty)$.
 It satisfies the Lipschitz condition on
 any interval $[t_0, T]$.
 \end{proof}
-
+The next general  result is in fact the part of Lemma 2 from \cite{Part 1}, and it will be applied in the proof of Proposition \ref{prop3}.
 
 \begin{lemma}\label{lem:Lemma-upperhelix}
-Let the process $X$ be self-similar on with exponent $H>0$,
-mean-square continuous on $[0,T]$.  Let for some
-$C>0$, $\lambda>0$ and $0<t_0<T$
-the process $X$ satisfy the inequality
+Let the process $Y$ be self-similar   with exponent $H>0$ and be 
+mean-square continuous on $[0,T]$. Additionally, let 
+the process $Y$ satisfy the inequality
 \[
-\ME(X_T - X_t)^2 \le C\, T^{2H-2\lambda} (T - t)^{2\lambda} , \qquad
-t_0\mathbin{<}t\mathbin{<}T.
+\ME(Y_T - Y_t)^2 \le C\, T^{2H-2\lambda} (T - t)^{2\lambda} , \qquad
+t_0\mathbin{<}t\mathbin{<}T 
 \]
-Then there exists $c$ such that
+for some
+$C>0$, $\lambda>0$ and for any $0<t_0<T$.
+Then there exists $c>0$ such that
 \[
-\ME(X_t - X_s)^2 \le c\, (t-s)^{2 (\lambda \wedge H)} , \qquad
+\ME(Y_t - Y_s)^2 \le c\, (t-s)^{2 (\lambda \wedge H)} , \qquad
 0\mathbin{\le}s\mathbin{<}t\mathbin{\le}T.
 \]
 \end{lemma}
 
-\begin{proof}
-The proof mostly repeats the proof of \cite[Lemma 2]{Part 1}.
-%Only the upper bound of $\ME(X_t - X_s)^2$ are constructed.
-\end{proof}
+Now let us return to our process $X$.
 
-\begin{prop}
+\begin{prop}\label{prop3}
 If $\alpha>-\frac12$ and $\gamma>-\frac12$,
 then the process $\dotX$ is mean-square continuous
-and has continuous modification on $(0,+\infty)$.
+and has continuous modification on $(0,T]$.
 If, in addition, $\alpha+\beta+\gamma>-\frac12$,
 then the process $\dotX$ is mean-square continuous
-and has continuous modification on $[0,+\infty)$.
+and has continuous modification on $[0,T]$.
 \end{prop}
 
 \begin{proof}
-Path-continuity of the process $\dotX$ on $(0,+\infty)$
+Path-continuity of the process $\dotX$ on $(0,T)$
 follows from local H\"older or Lipschitz condition.
 The process $\dotX$ satisfies H\"older condition
 up to order $(\gamma+\frac12)\vee 1$ on any finite
@@ -919,9 +910,9 @@ $0<\lambda_0 <(\gamma+\frac12)\vee 1$
 the incremental variance satisfies
 \[
 \ME(\dotX_t - \dotX_s)^2
-\le C(t_0, T, \lambda_0) \, |t-s|^{2\lambda_0} .
+\le C(t_0, T, \lambda_0) \, |t-s|^{2\lambda_0},
 \]
-Hence the mean-square continuity follows on $(0,+\infty)$.
+whence the mean-square continuity on $(0,T]$ follows.
 Furthermore,
 \[
 \ME \dotX_t^2 =  \ME(\dotX_t - \dotX_0)^2 =
@@ -965,7 +956,7 @@ The process $X_t$ is $\lceil\gamma+\frac12\rceil$ times
 	continuously differentiable on $(0,{+}\infty)$,
 	and
 	\begin{equation}\label{eq:dXtdXt}
-		\frac{d X_t}{dt} = \dotX_t.
+		\frac{d X_t}{dt} = \dotX_t,\quad t>0.
 	\end{equation}
 
 If, in addition, $\alpha+\beta+\gamma>-\frac12$,  then
@@ -1322,30 +1313,21 @@ Then, with \eqref{eqLinIEQ-power},
 L(v,t) t^\beta (t-s)^\gamma \, dt \, dW_s
 = \int_0^v dW_s = W_v.
 \]
-%Thus, the inverse representation is
-%\begin{align*}
-%W_v &= \int_0^v L(v,t)\, dX_t
-%\\ &=
-%\frac{1}{\mathrm{B}(-\gamma, \gamma{+}1)}
-%\int_0^v t^{-\beta}
-%\left(\vS^{-\alpha} (\vS{-}t)^{-\gamma-1}
-%+ \alpha \int_t^\vS u^{-\alpha-1} (u{-}t)^{-\gamma-1} \,du \right)
-%dW_t .
-%\end{align*}
+ 
 
-The reasoning in this section leads to the following corollary.
-\begin{corollary}
+As a  corollary, we immediately obtain the main result of this section.
+\begin{theorem}
 	Let $\alpha\mathbin{>}-\frac12$,
 	${-}1\mathbin{<}\gamma\mathbin{<}0$
 	and $\alpha+\beta+\gamma\mathbin{>}{-}\frac32$.
 	Then
 	\begin{enumerate}
+		 
+			 
 		\item
-			The process $X$ is well-defined by
-			\eqref{eq:XpowerV}
-			according to \cite[Theorem~1]{Part 1}.
-		\item
-			The inverse representation is
+			The process $X$ that is well-defined by
+			\eqref{eq:XpowerV},
+			according to \cite[Theorem~1]{Part 1}, admits the inverse representation of the form
 			\begin{align}
 				\hspace{-20.5pt}W_v &= \int_0^v L(v,t)\, dX_t
 				\nonumber \\ \hspace{-6.3pt}&=
@@ -1360,20 +1342,18 @@ The reasoning in this section leads to the following corollary.
 		\item
 			The integration in \eqref{eq:invRepgneg}
 			can be formally performed according
-			to \eqref{eq:defLPI3Kernel}.
-
-			There exist $p$ and $k$\,---\,namely $p$ and $k$
-			that satisfy \eqref{eq:selpk}\,---\,\allowbreak
-			for which $L(v,{{}\mathbin{\cdot}{}})\allowbreak \in
+			to \eqref{eq:defLPI3Kernel}, there exist $p$ and $k$, more precisely,   $p$ and $k$
+			that satisfy \eqref{eq:selpk},
+			for which $L(v,{{}\mathbin{\cdot}{}})  \in
 			\mathcal{E}_{p,k}$, and integration
 			in \eqref{eq:invRepgneg} can be performed
 			according to Definition~\ref{def-PLI-3p}.
-			The justification of such an integration rule
-			in given in Remark~\ref{rem:just-def-PLI-3p}.
+			
 	\end{enumerate}
-\end{corollary}
+\end{theorem}
 
-
+Note that justification of such an integration rule
+			is given in Remark~\ref{rem:just-def-PLI-3p}.
 
 \subsection[Case $\gamma\ge 0$ integer]
 {Case \boldmath$\gamma\ge 0$ integer}
@@ -1421,7 +1401,7 @@ $k\mathbin{>}{-}\frac12$. Thus,
 \]
 The representation of $W$ is
 \[
-	dW_t = \frac{1}{\gamma!}
+	 W_t = \frac{1}{\gamma!}
 	\int_0^t s^{-\alpha} \,
 	d\!\left(
 	\frac{d^\gamma (s^{-\beta} \dotX_s)}
@@ -1441,9 +1421,9 @@ continuously differentiable.
 For this modification, \eqref{eq:t-bXtdt}
 holds true.
 
-[Why the fractional integration is possible?]
+ 
 The process $\int_0^t s^\alpha \, dW_s$ is
-continuous on $[0,+\infty)$.
+continuous on $[0,T]$.
 
 The process $\int_0^t \, s^\alpha (t-s)^\gamma \, dW_s$
 is a $\gamma$th order fractional antiderivative
@@ -1512,220 +1492,220 @@ Thus, we have constructed the representation for $W$.
 
 
 
-\section{Asymptotic growth at infinity}
-Consider \cite[Theorem~2.6]{DKM}.
-Let
-\begin{gather*}
-	m_k = \sup_{t\in[b_k,b_{k+1}]} (\ME |X(t)|^2)^{1/2}
-	\le C b_{k+1}^\rho ,
-	\\
-	\sup_{t,s\in[b_k,b_{k+1}]} (\ME|X(t) - X(s)|^2)^{1/2}
-	\le C b_{k+1}^r h^{\boldsymbol{\beta}},
-	\qquad 0\mathbin{<}\boldsymbol{\beta}\mathbin{<}1,
-	\quad |t-s|\mathbin{\le}h.
-\end{gather*}
-Put
-$b_k = e^k$ and $a(t)=t^\kappa \log^p(t)$, $p\mathbin{>}1$.
-Then condition (i) of Theorem~2.6 holds true.
-Condition (ii):
-\[
-	\sum_{k=0}^\infty \frac{m_k}{a_k}
-	\le
-	C \sum_{k=0}^\infty \frac{e^{(k+1)\rho}}
-	{e^{k \kappa} k^p}
-	< \infty
-	\quad \mbox{if} \quad
-	\rho \mathbin{\le} \kappa.
-\]
-Condition (iii):
-\begin{align*}
-	\sum_{k=0}^\infty
-	\frac{m_k^{1 - \frac{\boldsymbol{\gamma}}{\boldsymbol{\beta}}}
-	(b_{k+1} - b_k)^{\boldsymbol\gamma}
-	c_k^{\boldsymbol{\gamma}/\boldsymbol{\beta}}}
-	{a_k}
-	&\le
-	C \sum_{k=0}^\infty
-	\frac{e^{k \rho \, \left( 1
-	- \frac{\boldsymbol{\gamma}}{\boldsymbol{\beta}} \right)}
-	e^{k \boldsymbol{\gamma}} e^{k r \boldsymbol{\gamma} /
-	\boldsymbol{\beta}}}
-	{e^{k\kappa} k^\rho}
-	\le \\ &\le
-	C \sum_{k=0}^\infty
-	\frac{\exp\left\{k \left( \rho \left(
-	1 - \frac{\boldsymbol{\gamma}}{\boldsymbol{\beta}} \right)
-	+ \boldsymbol{\gamma} + \frac{r \boldsymbol{\gamma}}
-	{\beta} - \kappa \right) \right\}}
-	{k \rho}
-	< \infty
-\end{align*}
-if $\rho - \kappa + \boldsymbol{\gamma}
-\left( 1 + \frac{r}{\boldsymbol{\beta}} - \frac{\rho}{\boldsymbol{\beta}}
-\right) \le 0$
-for some $\boldsymbol{\gamma}\in(0,1]$.
-
-It can be under the following conditions.
-\begin{enumerate}
-	\def\theenumi{\arabic{enumi})}
-	\def\labelenumi{\theenumi}
-	\item $\kappa>\rho$.
-		In this case, regardless of the sign of
-		$1 + (r-\rho)/{\boldsymbol{\beta}}$,
-		we can choose $\boldsymbol{\gamma}>0$
-		sufficiently small to supply
-		$\rho - \kappa + \boldsymbol{\gamma}
-		\left( 1 + \frac{r-\rho}{\boldsymbol{\beta}}\right)
-		< 0$.
-	\item \label{item:2-krb-r0}
-		$\kappa = \rho = \boldsymbol{\beta}$ and $r=0$.
-	\item $\kappa = \rho$ and
-		$1 + \frac{r-\rho}{\boldsymbol{\beta}} \le 0$.
-		(Case \ref{item:2-krb-r0} is included here.)
-	\item $\rho > \kappa$,
-		$1 + \cfrac{r-\rho}{\boldsymbol{\beta}} < 0$ and
-		$0 < \cfrac{\rho - \kappa}{\frac{\rho-r}{\boldsymbol{\beta}}
-		- 1} \le 1$.
-		In this case we can choose
-		\[
-			1 \ge \gamma \ge \frac{\rho-\kappa}
-			{\frac{\rho-r}{\boldsymbol{\beta}} - 1} .
-		\]
-\end{enumerate}
-
-If to summarise and apply \cite[Corollary~2.10]{DKM},
-we get that under assumptions
-\begin{enumerate}
-	\def\labelenumi{(\roman{enumi})}
-	\item $\displaystyle
-		\sup_{s\le t} (\ME |X_s|^2)^{1/2} \le C t^\rho$,
-	\item $\displaystyle
-		\sup_{s,u\le t} (\ME |X_t - X_s|^2)^{1/2} \le
-		C t^r h^{\boldsymbol\beta}$,\quad
-		$0\mathbin{<}\boldsymbol{\beta}\mathbin{<}1$,\quad
-		$|s - u| \boldsymbol{\le} h$
-\end{enumerate}
-we have that
-\[
-	|X_t| \le t^{\kappa} \log^p t \xi,
-	\qquad
-	p\mathbin{>}1,
-\]
-where we can put $\kappa = \rho$ if
-$1 + (r-\rho)/{\boldsymbol{\beta}} \le 0$,
-and we can take any $\kappa>\rho$ and $\xi = \ldots\ldots\ldots$
-
-Consider
-\[
-\mathbb{E}
-=
-\ME|X_{t_2} - X_{t_1}|^2
-=
-2 \int_{t_1}^{t_2} u^\beta
-\int_u^{t_2} v^\beta
-\int_0^u s^{2\alpha} (u-s)^\gamma (v-s)^\gamma
-\, ds \, dv \, du .
-\]
-Here $\alpha>-\frac12$, $\gamma>-1$ and $\alpha+\beta+\gamma>-\frac32$.
-
-\paragraph{(a)}
-Let $\gamma<0$.
-Then $(v-s)^\gamma \le (v-u)^\gamma$, and
-\begin{align*}
-	\mathbb{E}
-	&=
-	2 C \int_{t_1}^{t_2} u^\beta
-	\int_u^{t_2} v^\beta (v-u)^\gamma u^{2\alpha+\gamma+1} \, dv \, du
-	= \\ &=
-	C \int_{t_1}^{t_2} u^{2\alpha + \beta + \gamma + 1}
-	\int_u^{t_2} v^\beta (v-u)^\gamma \, du \, dv
-	= \\ &=
-	C \int_{t_1}^{t_2} v^\beta
-	\int_0^v u^{2\alpha+\beta+\gamma+1}
-	(v-u)^\gamma \, du \, dv
-	= \\ &=
-	C \int_{t_1}^{t_2} v^{2\alpha + 2\beta + 2\gamma + 2} \, dv
-	=
-	C \, (t_2^{2\alpha + 2\beta + 2\gamma + 3} -
-	      t_1^{2\alpha + 2\beta + 2\gamma + 3}) .
-\end{align*}
-\paragraph{(aa)}
-Let $2\alpha + 2\beta + 2\gamma + 3 \in (0,1]$ and $\gamma<0$.
-Then
-$\mathbb{E} \le C \, (t_2 - t_1)^{2\alpha + 2\beta + 2\gamma +3}.$
-It means that
-$r=0$,
-$\boldsymbol{\beta} = \alpha + \beta + \gamma + \frac32 = \rho$,
-and we can put $\kappa = \rho$,
-\[
-	a(t) = t^{\alpha + \beta + \gamma + \frac32} \log^p t,
-	\qquad
-	\forall p>0.
-\]
-\paragraph{(ab)}
-Let $2\alpha + 2\beta + 2\gamma + 3 > 1$ and $\gamma < 0$.
-Then
-\[
-	t_2^{2\alpha+2\beta+2\gamma+3} - t_1^{2\alpha+2\beta+2\gamma+3}
-	\le
-	C t_2^{2\alpha+2\beta+2\gamma+1} (t_2-t_1) .
-\]
-It means that $r=\alpha+\beta+\gamma+1>0$,
-$\boldsymbol{\beta} = \frac12$,
-$\rho = \alpha+\beta+\gamma+\frac32$,
-and we can take any $\kappa > \alpha+\beta+\gamma+\frac32$.
-Note that
-\[
-	1 + \frac{r-\rho}{\boldsymbol{\beta}}
-	=
-	1 + \frac{\alpha + \beta + \gamma + 1 -
-	(\alpha + \beta + \gamma + \frac32)}
-	{1/2} = 0,
-\]
-therefore we can take $\kappa = \alpha + \beta + \gamma + \frac32$.
-
-\paragraph{(b)}
-Let $\gamma=0$,
-Assume that $\beta>-1$.
-\begin{align*}
-	\mathbb{E}
-	&=
-	\frac{2}{2\alpha+1}
-	\int_{t_1}^{t_2} u^\beta
-	\int_u^{t_2} v^\beta u^{2\alpha+1} \, dv \, du
-	= \\ &=
-	C \int_{t_1}^{t_2} u^{2\alpha+\beta+1}
-	(t_2^{\beta+1} - u^{\beta+1}) \, du
-	\le \\ &\le
-	C \, (t_2^{\beta+1} -  t_1^{\beta+1}) \,
-	(t_2^{2\alpha+\beta+2} - t_1^{2\alpha+\beta+2})
-	\le \\ &\le
-	\begin{cases}
-		C \, (t_2-t_1)^{2\alpha+2\beta+3}
-		& \mbox{if $\beta\mathbin{\le}0$ and
-		$0\mathbin{<}2\alpha+\beta+2\mathbin{\le}1$},
-		\\
-		C \, t_2^\beta (t_2-t_1)^{2\alpha+\beta+3}
-		& \mbox{if $\beta\mathbin{>}0$ and
-		$0\mathbin{<}2\alpha+\beta+2\mathbin{\le}1$},
-		\\
-		C \, (t_2-t_1)^{\beta+2} t_2^{2\alpha+\beta+1}
-		& \mbox{if $\beta\mathbin{\le}0$ and
-		$2\alpha+\beta+2\mathbin{>}1$},
-		\\
-		C \, t_2^{2\alpha+2\beta+1} (t_2-t_1)^2
-		& \mbox{if $\beta\mathbin{>}0$ and
-		$2\alpha+\beta+2\mathbin{>}1$}
-	\end{cases}
-	\\ &=: \mathbb{E}_0.
-\end{align*}
-\paragraph{(c)}
-Let $\gamma>0$.
-Then
-\[
-	\mathbb{E} \le (t_2-t_1)^{2\gamma} \mathbb{E}_0,
-\]
-where $\mathbb{E}_0$ comes from case \textbf{(b)}.
+%\section{Asymptotic growth at infinity}
+%Consider \cite[Theorem~2.6]{DKM}.
+%Let
+%\begin{gather*}
+%	m_k = \sup_{t\in[b_k,b_{k+1}]} (\ME |X(t)|^2)^{1/2}
+%	\le C b_{k+1}^\rho ,
+%	\\
+%	\sup_{t,s\in[b_k,b_{k+1}]} (\ME|X(t) - X(s)|^2)^{1/2}
+%	\le C b_{k+1}^r h^{\boldsymbol{\beta}},
+%	\qquad 0\mathbin{<}\boldsymbol{\beta}\mathbin{<}1,
+%	\quad |t-s|\mathbin{\le}h.
+%\end{gather*}
+%Put
+%$b_k = e^k$ and $a(t)=t^\kappa \log^p(t)$, $p\mathbin{>}1$.
+%Then condition (i) of Theorem~2.6 holds true.
+%Condition (ii):
+%\[
+%	\sum_{k=0}^\infty \frac{m_k}{a_k}
+%	\le
+%	C \sum_{k=0}^\infty \frac{e^{(k+1)\rho}}
+%	{e^{k \kappa} k^p}
+%	< \infty
+%	\quad \mbox{if} \quad
+%	\rho \mathbin{\le} \kappa.
+%\]
+%Condition (iii):
+%\begin{align*}
+%	\sum_{k=0}^\infty
+%	\frac{m_k^{1 - \frac{\boldsymbol{\gamma}}{\boldsymbol{\beta}}}
+%	(b_{k+1} - b_k)^{\boldsymbol\gamma}
+%	c_k^{\boldsymbol{\gamma}/\boldsymbol{\beta}}}
+%	{a_k}
+%	&\le
+%	C \sum_{k=0}^\infty
+%	\frac{e^{k \rho \, \left( 1
+%	- \frac{\boldsymbol{\gamma}}{\boldsymbol{\beta}} \right)}
+%	e^{k \boldsymbol{\gamma}} e^{k r \boldsymbol{\gamma} /
+%	\boldsymbol{\beta}}}
+%	{e^{k\kappa} k^\rho}
+%	\le \\ &\le
+%	C \sum_{k=0}^\infty
+%	\frac{\exp\left\{k \left( \rho \left(
+%	1 - \frac{\boldsymbol{\gamma}}{\boldsymbol{\beta}} \right)
+%	+ \boldsymbol{\gamma} + \frac{r \boldsymbol{\gamma}}
+%	{\beta} - \kappa \right) \right\}}
+%	{k \rho}
+%	< \infty
+%\end{align*}
+%if $\rho - \kappa + \boldsymbol{\gamma}
+%\left( 1 + \frac{r}{\boldsymbol{\beta}} - \frac{\rho}{\boldsymbol{\beta}}
+%\right) \le 0$
+%for some $\boldsymbol{\gamma}\in(0,1]$.
+%
+%It can be under the following conditions.
+%\begin{enumerate}
+%	\def\theenumi{\arabic{enumi})}
+%	\def\labelenumi{\theenumi}
+%	\item $\kappa>\rho$.
+%		In this case, regardless of the sign of
+%		$1 + (r-\rho)/{\boldsymbol{\beta}}$,
+%		we can choose $\boldsymbol{\gamma}>0$
+%		sufficiently small to supply
+%		$\rho - \kappa + \boldsymbol{\gamma}
+%		\left( 1 + \frac{r-\rho}{\boldsymbol{\beta}}\right)
+%		< 0$.
+%	\item \label{item:2-krb-r0}
+%		$\kappa = \rho = \boldsymbol{\beta}$ and $r=0$.
+%	\item $\kappa = \rho$ and
+%		$1 + \frac{r-\rho}{\boldsymbol{\beta}} \le 0$.
+%		(Case \ref{item:2-krb-r0} is included here.)
+%	\item $\rho > \kappa$,
+%		$1 + \cfrac{r-\rho}{\boldsymbol{\beta}} < 0$ and
+%		$0 < \cfrac{\rho - \kappa}{\frac{\rho-r}{\boldsymbol{\beta}}
+%		- 1} \le 1$.
+%		In this case we can choose
+%		\[
+%			1 \ge \gamma \ge \frac{\rho-\kappa}
+%			{\frac{\rho-r}{\boldsymbol{\beta}} - 1} .
+%		\]
+%\end{enumerate}
+%
+%If to summarise and apply \cite[Corollary~2.10]{DKM},
+%we get that under assumptions
+%\begin{enumerate}
+%	\def\labelenumi{(\roman{enumi})}
+%	\item $\displaystyle
+%		\sup_{s\le t} (\ME |X_s|^2)^{1/2} \le C t^\rho$,
+%	\item $\displaystyle
+%		\sup_{s,u\le t} (\ME |X_t - X_s|^2)^{1/2} \le
+%		C t^r h^{\boldsymbol\beta}$,\quad
+%		$0\mathbin{<}\boldsymbol{\beta}\mathbin{<}1$,\quad
+%		$|s - u| \boldsymbol{\le} h$
+%\end{enumerate}
+%we have that
+%\[
+%	|X_t| \le t^{\kappa} \log^p t \xi,
+%	\qquad
+%	p\mathbin{>}1,
+%\]
+%where we can put $\kappa = \rho$ if
+%$1 + (r-\rho)/{\boldsymbol{\beta}} \le 0$,
+%and we can take any $\kappa>\rho$ and $\xi = \ldots\ldots\ldots$
+%
+%Consider
+%\[
+%\mathbb{E}
+%=
+%\ME|X_{t_2} - X_{t_1}|^2
+%=
+%2 \int_{t_1}^{t_2} u^\beta
+%\int_u^{t_2} v^\beta
+%\int_0^u s^{2\alpha} (u-s)^\gamma (v-s)^\gamma
+%\, ds \, dv \, du .
+%\]
+%Here $\alpha>-\frac12$, $\gamma>-1$ and $\alpha+\beta+\gamma>-\frac32$.
+%
+%\paragraph{(a)}
+%Let $\gamma<0$.
+%Then $(v-s)^\gamma \le (v-u)^\gamma$, and
+%\begin{align*}
+%	\mathbb{E}
+%	&=
+%	2 C \int_{t_1}^{t_2} u^\beta
+%	\int_u^{t_2} v^\beta (v-u)^\gamma u^{2\alpha+\gamma+1} \, dv \, du
+%	= \\ &=
+%	C \int_{t_1}^{t_2} u^{2\alpha + \beta + \gamma + 1}
+%	\int_u^{t_2} v^\beta (v-u)^\gamma \, du \, dv
+%	= \\ &=
+%	C \int_{t_1}^{t_2} v^\beta
+%	\int_0^v u^{2\alpha+\beta+\gamma+1}
+%	(v-u)^\gamma \, du \, dv
+%	= \\ &=
+%	C \int_{t_1}^{t_2} v^{2\alpha + 2\beta + 2\gamma + 2} \, dv
+%	=
+%	C \, (t_2^{2\alpha + 2\beta + 2\gamma + 3} -
+%	      t_1^{2\alpha + 2\beta + 2\gamma + 3}) .
+%\end{align*}
+%\paragraph{(aa)}
+%Let $2\alpha + 2\beta + 2\gamma + 3 \in (0,1]$ and $\gamma<0$.
+%Then
+%$\mathbb{E} \le C \, (t_2 - t_1)^{2\alpha + 2\beta + 2\gamma +3}.$
+%It means that
+%$r=0$,
+%$\boldsymbol{\beta} = \alpha + \beta + \gamma + \frac32 = \rho$,
+%and we can put $\kappa = \rho$,
+%\[
+%	a(t) = t^{\alpha + \beta + \gamma + \frac32} \log^p t,
+%	\qquad
+%	\forall p>0.
+%\]
+%\paragraph{(ab)}
+%Let $2\alpha + 2\beta + 2\gamma + 3 > 1$ and $\gamma < 0$.
+%Then
+%\[
+%	t_2^{2\alpha+2\beta+2\gamma+3} - t_1^{2\alpha+2\beta+2\gamma+3}
+%	\le
+%	C t_2^{2\alpha+2\beta+2\gamma+1} (t_2-t_1) .
+%\]
+%It means that $r=\alpha+\beta+\gamma+1>0$,
+%$\boldsymbol{\beta} = \frac12$,
+%$\rho = \alpha+\beta+\gamma+\frac32$,
+%and we can take any $\kappa > \alpha+\beta+\gamma+\frac32$.
+%Note that
+%\[
+%	1 + \frac{r-\rho}{\boldsymbol{\beta}}
+%	=
+%	1 + \frac{\alpha + \beta + \gamma + 1 -
+%	(\alpha + \beta + \gamma + \frac32)}
+%	{1/2} = 0,
+%\]
+%therefore we can take $\kappa = \alpha + \beta + \gamma + \frac32$.
+%
+%\paragraph{(b)}
+%Let $\gamma=0$,
+%Assume that $\beta>-1$.
+%\begin{align*}
+%	\mathbb{E}
+%	&=
+%	\frac{2}{2\alpha+1}
+%	\int_{t_1}^{t_2} u^\beta
+%	\int_u^{t_2} v^\beta u^{2\alpha+1} \, dv \, du
+%	= \\ &=
+%	C \int_{t_1}^{t_2} u^{2\alpha+\beta+1}
+%	(t_2^{\beta+1} - u^{\beta+1}) \, du
+%	\le \\ &\le
+%	C \, (t_2^{\beta+1} -  t_1^{\beta+1}) \,
+%	(t_2^{2\alpha+\beta+2} - t_1^{2\alpha+\beta+2})
+%	\le \\ &\le
+%	\begin{cases}
+%		C \, (t_2-t_1)^{2\alpha+2\beta+3}
+%		& \mbox{if $\beta\mathbin{\le}0$ and
+%		$0\mathbin{<}2\alpha+\beta+2\mathbin{\le}1$},
+%		\\
+%		C \, t_2^\beta (t_2-t_1)^{2\alpha+\beta+3}
+%		& \mbox{if $\beta\mathbin{>}0$ and
+%		$0\mathbin{<}2\alpha+\beta+2\mathbin{\le}1$},
+%		\\
+%		C \, (t_2-t_1)^{\beta+2} t_2^{2\alpha+\beta+1}
+%		& \mbox{if $\beta\mathbin{\le}0$ and
+%		$2\alpha+\beta+2\mathbin{>}1$},
+%		\\
+%		C \, t_2^{2\alpha+2\beta+1} (t_2-t_1)^2
+%		& \mbox{if $\beta\mathbin{>}0$ and
+%		$2\alpha+\beta+2\mathbin{>}1$}
+%	\end{cases}
+%	\\ &=: \mathbb{E}_0.
+%\end{align*}
+%\paragraph{(c)}
+%Let $\gamma>0$.
+%Then
+%\[
+%	\mathbb{E} \le (t_2-t_1)^{2\gamma} \mathbb{E}_0,
+%\]
+%where $\mathbb{E}_0$ comes from case \textbf{(b)}.
 
 
 \begin{thebibliography}{8}
