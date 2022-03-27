@@ -1,0 +1,322 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\DeclareMathOperator{\ME}{\mathsf{E}}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\cov}{cov}
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\begin{document}
+\begin{prop}\label{prop:sstostat}
+Let $\{X(t),\; t\mathbin{>}0\}$
+be a self-similar zero-mean Gaussian process
+with self-similarity exponent $H$.
+Then
+$\{e^{-Ht} X(e^t), \; t\mathbin{\in}\mathbb{R}\}$
+is a stationary zero-mean Gaussian process.
+
+Denote $r(t)$ the autocovariance function of the latter process:
+\[
+r(t) = \ME \left[e^{-H \, (t+s)} X(e^{t+s}) \, e^{-H s} X(e^s) \right],
+\]
+which does not depend on $s$.
+If, additionally, the process $X$ satisfy
+\[
+\lim_{t\to 1} \frac{\ME(X_t - X_1)^2} {|t-1|^{2\lambda}} = c_1
+\]
+for some $\lambda\mathbin{\in}(0,1]$ and $c_1<\infty$,
+then
+\begin{equation}\label{eq:asyrat0}
+\lim_{t\to 0} \frac{r(0) - r(t)}{|t|^{2\lambda}} \to c_2
+\end{equation}
+for the same $\lambda$ and for some $c_2<\infty$.
+\end{prop}
+
+\begin{proof}
+The fact that $e^{-Ht} X(e^t)$ is a zero-mean Gaussian process is obvious.
+
+As the process $X$ is self-similar,
+it covariance function satisfy the relation
+$\ME X(ks) X(kt) = k^{2H} \ME X(s) X(t)$.
+Hence,
+\begin{multline*}
+\ME \left[ e^{-Ht} X(e^t) e^{-Hs} X(e^s) \right]
+=
+e^{-H(t+s)} \ME \left[X(e^t) X(e^s)\right]
+= \\ =
+e^{-H(t+s)} e^{2Hs} \ME \left[X^(e^{t-s}) X(1)\right]
+=
+e^{-H(t-s)} \ME \left[X^(e^{t-s}) X(1)\right] .
+\end{multline*}
+Thus, the Gaussian process $e^{-Ht} X(e^t)$ is stationary.
+
+As to the second statement of proposition,
+\begin{gather*}
+r(t) = \cov(e^{-Ht} X(e^t), X(1)) = e^{-Ht} \cov(X(e^t),X(1)), \\
+\begin{aligned}
+2 r(t) &= e^{-Ht} \left(\ME X(e^t)^2 + \ME X(1)^2 - \ME(X(e^t)-X(1))^2\right)
+= \\ &=
+e^{-Ht} \left( e^{2tH} X(1)^2 + \ME X(1)^2 - c_1 \, |e^t - 1|^{2\lambda}
++ o(|e^t - 1|^{2\lambda}) \right)
+= \\ &=
+(e^{Ht} + e^{-Ht}) r(0) - c_1 \, |t|^{2\lambda} + o(|t|^{2\lambda}),
+\end{aligned}\\
+r(0) - r(t) = \frac{c_1}{2} \, |t|^{2\lambda} - 2 \sinh(Ht/2)^2 + o(|t|^{2\lambda})
+= c_2 \, |t|^{2\lambda} + o(|t|^{2\lambda}),
+\end{gather*}
+where $c_2 = c_1/2$ if $0\mathbin{<}\lambda\mathbin{<}1$,
+and $c_2 = (c_1 - H^2)/2$ if $\lambda=1$.
+Thus, \eqref{eq:asyrat0} holds true.
+\end{proof}
+
+\begin{lemma}\label{lem:uhbocond}
+Let $\{X_t,\; t\in\mathbb{R}\}$
+be a wide-sense stationary process whose
+autocovariance function $r_X$.
+Let $\lambda>0$.
+A constant $c$ such that
+\begin{equation}\label{neq:lemdesb}
+\ME(X_t - X_s)^2 \le c \, |t-s|^{2\lambda},\qquad
+s,t\mathbin{\in}\mathbb{R},
+\end{equation}
+exists if and only if
+\begin{equation}\label{neq:lemcondb}
+\limsup_{t\to 0}
+\frac{r_X(0) - r_X(t)}{|t|^{2\lambda}} < \infty.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+\textit{Necessity, $\eqref{neq:lemdesb}\Rightarrow\eqref{neq:lemcondb}$.}
+Let \eqref{neq:lemdesb} hold true.
+As $\ME(X_t - X_0) = 2(r_X(0) - r_X(t))$,
+\[
+\frac{r_X(0) - r_X(t)}{|t|^{2\lambda}} \le \frac{c}{2}
+\]
+is bounded, and thus its limit superior is finite,
+\[
+0 \le \limsup_{t\to0}\frac{r_X(0) - r_X(t)}{|t|^{2\lambda}} \le \frac{c}{2}.
+\]
+
+
+
+\textit{Sufficiency, $\eqref{neq:lemcondb}\Rightarrow\eqref{neq:lemdesb}$.}
+Consider the function
+\[
+f(t) = \frac{2 (r_X(0) - r_X(t))}{|t|^{2\lambda}} ,
+\qquad t\mathbin{\neq}0 .
+\]
+Due to \eqref{neq:lemcondb}, $f(t)$
+is bounded in neighborhood of $0$.
+The numerator is bounded,
+$0 \le 2 (r_X(0) - r_X(t)) \le 4 r_X(0)$,
+whence $f(t)$ is bounded on any set
+$(-\infty,-t_0]\cup[t_0,\infty)$
+separated from zero.
+Thus, $f(t)$ is bounded on its domain,
+\[
+\frac{2 (r_X(0) - r_X(t))}{|t|^{2\lambda}} = f(t) \le c,
+\qquad t\in\mathbb{R}\setminus\{0\}.
+\]
+Hence, obviously, $c\ge 0$ and
+\[
+2 (r_X(0) - r_X(t)) \le c \, |t|^{2\lambda} , \qquad
+t\mathbin{\in}\mathbb{R} .
+\]
+As $\ME(X_{s+t} - X_s)^2 = 2(r_X(0)-r_X(t))$,
+\begin{gather*}
+\ME(X_{t+s} - X_s)^2 \le c \, |t|^{2\lambda} , \qquad
+s,t\mathbin{\in}\mathbb{R} ; \\
+\ME(X_t - X_s)^2 \le c \, |t-s|^{2\lambda} , \qquad
+s,t\mathbin{\in}\mathbb{R}.
+\qedhere
+\end{gather*}
+\end{proof}
+
+
+\begin{thm}\label{thm:useDozzi}
+Let $X$ be a path-continuous modification
+of a stationary zero-mean Gaussian process
+whose autocovariance function
+satisfies \eqref{neq:lemcondb}.
+Then, for all $\epsilon>0$,
+\[
+\sup_{t>1} t^{-\epsilon} \, |X_t| < \infty
+\quad
+a.s.
+\]
+\end{thm}
+
+\begin{proof}
+Assume that $\ME X_t^2 > 0$, as otherwise the assertion of the
+the theorem is obvious.
+
+We apply Theorem~2.6 from \cite{Dozzi2018}.
+For less cumbersome notation, we apply it for the process
+$X$ on interval $[1,\infty)$, which is partitioned into
+finite intervals $[b_k,b_{k+1}]$,\spacefactor2500{}
+$k\mathbin{=}1,2,\ldots$\spacefactor3000{}
+(In \cite[Theorem~2.6]{Dozzi2018} as it is stated, the
+interval $[0,\infty)$ is partitioned into finite intervals
+$[b_k,b_{k+1}]$,\spacefactor2500{}
+$k\mathbin{=}0,1,2,\ldots$\spacefactor3000{})
+
+Now chose parameters in \cite[Theorem~2.6]{Dozzi2018}.
+First, we choose exponents $\alpha\mathbin{>}1$ and
+$\gamma\mathbin{\in}(0,\,1]$ such that
+$\epsilon \alpha > 1$ and $\epsilon \alpha > 1 + (\alpha-1) \gamma$.
+For that reason, we can take $\alpha = \max(3/\epsilon,\, 2)$
+and $\gamma = 1/(\alpha-1)$.  We take $\beta=\lambda$,
+where $\lambda$ comes from condition \eqref{neq:lemcondb}.
+
+Denote $a(t) = t^\epsilon$,\spacefactor2500{}
+$t\mathbin{\ge}1$;\spacefactor3000{}
+$b_k=k^\alpha$,\spacefactor2500{}
+$k\mathbin{=}1,2,\ldots;$\spacefactor3000{}
+thus,
+$a_k = a(b_k)=k^{\alpha \epsilon}$,\spacefactor2500{}
+$k\mathbin{=}1,2,\ldots$\spacefactor3000{}
+For $c_k$, we take $c^{1/2}$, where $c$ comes from
+Lemma~\ref{lem:uhbocond};
+thus, $c_k = c^{1/2}$ will not depend on $k$.
+We also take $m_k = \left( \ME X_t^2 \right)^{1/2}$,
+which does not depend on $t$ or $k$.
+
+The conditions stated before \cite[Theorem~2.6]{Dozzi2018}
+and condition (i) of \cite[Theorem~2.6]{Dozzi2018}
+hold true.
+As to conditions (ii) and (iii),
+\begin{gather*}
+\sum_{k=1}^\infty \frac{m_k}{a_k} = m_1 \sum_{k=1}^\infty k^{-\alpha \epsilon} < \infty; \\
+\begin{aligned}
+\frac{m_k^{1-\gamma/\beta} (b_{k+1} - b_k)^\gamma c_k^{\gamma/\beta}}
+{a_k}
+&=
+\frac{m_1^{1-\gamma/\beta} ((k+1)^\alpha - k^\alpha)^\gamma  c_1^{\gamma/\beta}}
+{k^{\alpha \epsilon}}
+\sim \\ &\sim
+ \alpha^\gamma m_1^{1-\gamma/\beta}  c_1^{\gamma/\beta} k^{(\alpha-1)\gamma - \alpha\epsilon}
+\quad \mbox{as} \quad k\mathbin{\to}\infty,
+\end{aligned}
+\end{gather*}
+whence
+\[
+\sum_{k=1}^\infty
+\frac{m_k^{1-\gamma/\beta} (b_{k+1} - b_k)^\gamma c_k^{\gamma/\beta}}
+{a_k} < \infty .
+\]
+
+By \cite[Theorem~2.6]{Dozzi2018},
+$C = \sup_{t>1} |X_t|\mathbin{/}a(t)$
+is finite a.s.,
+and
+$\ME \exp(t C) < \infty$ for all $t>0$.
+\end{proof}
+
+If the following theorem, the well-definedness
+of the process $X$ is proved in
+\cite[Theorem~1]{Part1},
+while the existence of the continuous modification
+is proved in \cite[Theorem~6]{Part1}.
+\begin{thm}
+Let
+\[
+\alpha>-\frac12,\qquad
+\gamma>-1, \qquad
+\alpha+\beta+\gamma > -\frac32 ,
+\]
+and let $\{X_t,\; t\mathbin{\ge}0\}$ be a path-continuous
+modification of the process
+\[
+X_t = \int_0^t s^\alpha \int_s^t t^\beta\, (u-t)^\gamma \, du \, dW_s.
+\]
+Then, for any $\epsilon>0$
+\[
+\sup_{t\ge 3}
+\frac{|X_t|}{t^{\alpha+\beta+\gamma+1.5} (\ln t)^\epsilon}
+< \infty
+\quad \mbox{a.s.}
+\]
+\end{thm}
+
+\begin{proof}
+By \cite[Proposition~1]{Part1}, the process $X$
+is self-similar with self-similarity exponent
+\[
+H = \alpha + \beta + \gamma + \frac32 .
+\]
+By \cite[Proposition~2]{Part1}, the process $X$
+satisfies
+\[
+\lim_{t\to t_0} \frac{\var(X_t - X_1)}{|t-1|^{2\lambda}} = c_1
+\]
+with
+\begin{gather*}
+\lambda=\gamma+\frac32 \quad \mbox{and} \quad
+c_1 = \mathrm{B}(\gamma{+}1,\, {-}2\gamma{-}1)
+\quad \mbox{if} \quad \gamma\mathbin{\in}\biggl(-1,\, -\frac12 \biggr),
+\\
+\mbox{any~} \lambda\mathbin{\in}(0,\,1)
+\quad \mbox{and} \quad
+c_1 = 0
+\quad \mbox{if} \quad \gamma\mathbin{=} -\frac12,
+\\
+\mbox{} \lambda\mathbin{=}1
+\quad \mbox{and} \quad
+c_1 = \mathrm{B}(2\alpha{+}1,\, 2\gamma{+}1)
+\quad \mbox{if} \quad \gamma\mathbin{>} -\frac12.
+\end{gather*}
+
+By Proposition~\ref{prop:sstostat},
+the zero-mean Gaussian process $\{Y_t,\; t\mathbin{\in}\mathbb{R}\}$
+\[
+Y_t = e^{-H t} X_{\exp(t)}
+\]
+is stationary, and its autocovariance function $r_Y(t)$
+satisfies
+\[
+\lim_{t\to 0} \frac{r_Y(0) - r_Y(t)}{|t|^{2\lambda}}
+= c_2 < \infty .
+\]
+
+By Theorem~\ref{thm:useDozzi},
+\begin{gather*}
+\sup_{t>1} t^{-\epsilon} \, |Y_t| < \infty
+\quad
+\mbox{a.s.,}\\
+\sup_{t>1} t^{-\epsilon} \, \exp(-Ht)  \, |X_{\exp(t)}| < \infty
+\quad \mbox{a.s.}
+\end{gather*}
+Substituting $t = \ln s$, we get
+\begin{equation*}
+\sup_{s\ge 3} \frac{|X_s|}{s^H \, \ln (s)^\epsilon}
+\le
+\sup_{s > \exp(1)} \frac{|X_s|}{\ln (s)^\epsilon \,  s^H}
+<
+\infty
+\quad \mbox{a.s.}   \qedhere
+\end{equation*}
+\end{proof}
+
+\begin{thebibliography}{1}
+\bibitem{Dozzi2018}
+		M.~Dozzi, Yu.~Kozachenko, Yu.~Mishura, K.~Ralchenko.
+		Asymptotic growth of trajectories of multifractional
+		Brownian motion, with statistical applications to
+		drift parameter estimation.
+		\textit{Stat. Interference Stoch. Process.},
+		2018, Vol.~21, 21--52.
+
+\bibitem{Part1}
+		Yu.~Mishura and S.~Shklyar.
+		Gaussian Volterra processes with power-type kernels.
+		Part 1.
+		Submitted to \textit{Modern Stochastics: Theory and Applications}.
+
+
+
+\end{thebibliography}
+
+\end{document}
